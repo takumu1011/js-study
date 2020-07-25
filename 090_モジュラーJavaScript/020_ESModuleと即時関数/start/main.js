@@ -1,5 +1,4 @@
 const moduleA = (function () {
-
   console.log('IIFE called');
 
   let privateVal = 1;
@@ -9,12 +8,18 @@ const moduleA = (function () {
     console.log('publicFn called: ' + publicVal);
   }
 
-  function privateFn() {
-
-  }
+  function privateFn() {}
 
   return {
     publicFn,
-    publicVal
-  }
+    publicVal,
+  };
 })();
+
+const moduleB = (function ({ publicFn, publicVal }) {
+  publicFn();
+  publicFn();
+  publicFn();
+  console.log(publicVal++);
+  console.log(publicVal++);
+})(moduleA);
